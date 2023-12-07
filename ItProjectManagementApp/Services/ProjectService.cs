@@ -8,6 +8,7 @@ namespace ItProjectManagementApp.Service
 {
     public interface IProjectService
     {
+        int Create(CreateProjectDto dto);
         IEnumerable<ProjectDto> GetAll();
         ProjectDto GetById(int id);
     }
@@ -25,7 +26,16 @@ namespace ItProjectManagementApp.Service
             _logger = logger;
         }
 
-        public IEnumerable<ProjectDto> GetAll()
+    public int Create(CreateProjectDto dto)
+    {
+        var project = _mapper.Map<Project>(dto);
+        _dbContext.Projects.Add(project);
+        _dbContext.SaveChanges();
+
+        return project.Id;
+    }
+
+    public IEnumerable<ProjectDto> GetAll()
         {
             var projects = _dbContext
                 .Projects

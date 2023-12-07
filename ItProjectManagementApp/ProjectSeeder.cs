@@ -33,7 +33,7 @@ namespace ItProjectManagementApp
             {
                 new Project()
                 {
-                    Id = 0,
+                    //Id = 0,
                     Name = "Projekt aplikacja webowa do karaoke",
                     Description = "Aplikacja webowa do karaoke",
                     StartDate = null,
@@ -42,7 +42,7 @@ namespace ItProjectManagementApp
                     {
                         new Task()
                         {
-                            Id = 0,
+                            //Id = 0,
                             Title = "Postawienie szkieletu",
                             Description = "Celem zadania jest postawienie szkieletu",
                             Priority = TaskPriority.Medium,
@@ -53,7 +53,7 @@ namespace ItProjectManagementApp
                         },
                         new Task()
                         {
-                            Id = 1,
+                            //Id = 1,
                             Title = "Moduł przetwarzania dźwieku",
                             Description = "Celem zadania utworzenie modułu przetwarzania dźwięku",
                             Priority = TaskPriority.High,
@@ -61,31 +61,31 @@ namespace ItProjectManagementApp
                             Type = TaskType.UserStory,
                             StartDate = null,
                             EndDate = null,
-                            SubTasks = new List<Task>()
-                            {
-                                new Task()
-                                {
-                                    Id = 2,
-                                    Title = "Zad 1 modułu przetwarzania dźwieku",
-                                    Description = "Zad 1 modułu",
-                                    Priority = TaskPriority.Medium,
-                                    Status = TaskStatus.Completed,
-                                    Type = TaskType.TechnicalIssue,
-                                    StartDate = null,
-                                    EndDate = null
-                                },
-                                new Task()
-                                {
-                                    Id = 3,
-                                    Title = "Zad 2 modułu przetwarzania dźwieku",
-                                    Description = "Zad 2 modułu przetwarzania dźwieku",
-                                    Priority = TaskPriority.Medium,
-                                    Status = TaskStatus.Completed,
-                                    Type = TaskType.TechnicalIssue,
-                                    StartDate = null,
-                                    EndDate = null
-                                },
-                            }
+                            //SubTasks = new List<Task>()
+                            //{
+                            //    new Task()
+                            //    {
+                            //        //Id = 2,
+                            //        Title = "Zad 1 modułu przetwarzania dźwieku",
+                            //        Description = "Zad 1 modułu",
+                            //        Priority = TaskPriority.Medium,
+                            //        Status = TaskStatus.Completed,
+                            //        Type = TaskType.TechnicalIssue,
+                            //        StartDate = null,
+                            //        EndDate = null
+                            //    },
+                            //    new Task()
+                            //    {
+                            //        //Id = 3,
+                            //        Title = "Zad 2 modułu przetwarzania dźwieku",
+                            //        Description = "Zad 2 modułu przetwarzania dźwieku",
+                            //        Priority = TaskPriority.Medium,
+                            //        Status = TaskStatus.Completed,
+                            //        Type = TaskType.TechnicalIssue,
+                            //        StartDate = null,
+                            //        EndDate = null
+                            //    },
+                            //}
                         },
                     }
                 }

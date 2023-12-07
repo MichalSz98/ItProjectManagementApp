@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ItProjectManagementApp.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20231207083946_init")]
-    partial class init
+    [Migration("20231207093356_init2")]
+    partial class init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,10 @@ namespace ItProjectManagementApp.Migrations
             modelBuilder.Entity("ItProjectManagementApp.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -53,7 +56,10 @@ namespace ItProjectManagementApp.Migrations
             modelBuilder.Entity("ItProjectManagementApp.Entities.Task", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()

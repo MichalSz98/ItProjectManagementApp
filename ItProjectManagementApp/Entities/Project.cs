@@ -4,7 +4,7 @@ namespace ItProjectManagementApp.Entities
 {
     public class Project
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)] // TODO USUNĄĆ
+       // [DatabaseGenerated(DatabaseGeneratedOption.None)] // TODO USUNĄĆ
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

@@ -25,7 +25,10 @@ namespace ItProjectManagementApp.Migrations
             modelBuilder.Entity("ItProjectManagementApp.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -50,7 +53,10 @@ namespace ItProjectManagementApp.Migrations
             modelBuilder.Entity("ItProjectManagementApp.Entities.Task", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()

@@ -12,6 +12,8 @@ namespace ItProjectManagementApp
             CreateMap<Project, ProjectDto>();
 
             CreateMap<Task, TaskDto>();
+
+            CreateMap<CreateProjectDto, Project>();
         }
     }
 }

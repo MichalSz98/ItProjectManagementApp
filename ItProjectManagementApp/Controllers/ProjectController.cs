@@ -16,6 +16,14 @@ namespace ItProjectManagementApp.Controllers
             _projectService = projectService;
         }
 
+        [HttpPost]
+        public ActionResult CreateProject([FromBody] CreateProjectDto dto)
+        {
+            var id = _projectService.Create(dto);
+
+            return Created($"/api/project/{id}", null);
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Project>> GetAll()
         {
