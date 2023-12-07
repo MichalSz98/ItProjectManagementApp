@@ -5,7 +5,7 @@ using Task = Domain.Entities.Task;
 
 namespace Application.CQRS.Handlers
 {
-    public class CreateTaskCommandHandler
+    public class CreateTaskCommandHandler : ICommandHandler<CreateTaskCommand>
     {
         private readonly IDataRepository<Task> _repository;
         private readonly IMapper _mapper;
@@ -17,13 +17,11 @@ namespace Application.CQRS.Handlers
             _mapper = mapper;
         }
 
-        public int Handle(CreateTaskCommand command)
+        public void Handle(CreateTaskCommand command)
         {
             var task = _mapper.Map<Task>(command);
 
             _repository.Add(task);
-
-            return task.Id;
         }
     }
 }

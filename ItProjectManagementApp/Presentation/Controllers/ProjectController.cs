@@ -10,14 +10,11 @@ namespace ItProjectManagementApp.Presentation.Controllers
     [Route("/api/project")]
     public class ProjectController : ControllerBase
     {
-        private readonly GetAllProjectsQueryHandler _getAllProjectsQueryHandler;
-        private readonly CreateProjectCommandHandler _createProjectCommandHandler;
+        private readonly GenericHandler _genericHandler;
 
-        public ProjectController(GetAllProjectsQueryHandler getAllProjectsQueryHandler,
-            CreateProjectCommandHandler createProjectCommandHandler)
+        public ProjectController(GenericHandler genericHandler)
         {
-            _getAllProjectsQueryHandler = getAllProjectsQueryHandler;
-            _createProjectCommandHandler = createProjectCommandHandler;
+            _genericHandler = genericHandler;
         }
 
         // Metody z wykorzystaniem CQRS
@@ -26,7 +23,7 @@ namespace ItProjectManagementApp.Presentation.Controllers
         {
             var query = new GetAllProjectsQuery();
 
-            var projects = _getAllProjectsQueryHandler.Handle(query);
+            var projects = _genericHandler.Handle<GetAllProjectsQueryHandler, IEnumerable<ProjectDto>>(query);
 
             return Ok(projects);
         }
@@ -34,9 +31,9 @@ namespace ItProjectManagementApp.Presentation.Controllers
         [HttpPost]
         public ActionResult CreateProject([FromBody] CreateProjectCommand cmd)
         {
-            var id = _createProjectCommandHandler.Handle(cmd);
+            _genericHandler.Handle<CreateProjectCommandHandler>(cmd);
 
-            return Created($"/api/project/{id}", null);
+            return Created();
         }
     }
 }

@@ -8,20 +8,20 @@ namespace ItProjectManagementApp.Presentation.Controllers
     [Route("/api/task")]
     public class TaskController : ControllerBase
     {
-        private readonly CreateTaskCommandHandler _createTaskCommandHandler;
+        private readonly GenericHandler _genericHandler;
 
-        public TaskController(CreateTaskCommandHandler createTaskCommandHandler)
+        public TaskController(GenericHandler genericHandler)
         {
-            _createTaskCommandHandler = createTaskCommandHandler;
+            _genericHandler = genericHandler;
         }
 
         // Metody z wykorzystaniem CQRS
         [HttpPost]
         public ActionResult CreateProject([FromBody] CreateTaskCommand cmd)
         {
-            var id = _createTaskCommandHandler.Handle(cmd);
+            _genericHandler.Handle<CreateTaskCommandHandler>(cmd);
 
-            return Created($"/api/task/{id}", null);
+            return Created();
         }
     }
 }

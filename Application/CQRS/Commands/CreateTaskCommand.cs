@@ -9,7 +9,7 @@ using TaskStatus = Domain.Enums.TaskStatus;
 
 namespace Application.CQRS.Commands
 {
-    public class CreateTaskCommand
+    public class CreateTaskCommand : ICommand
     {
         public string Title { get; set; }
         public string Description { get; set; }

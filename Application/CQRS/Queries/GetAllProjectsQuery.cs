@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Queries
 {
-    public class GetAllProjectsQuery
+    public class GetAllProjectsQuery : IQuery
     {
     }
 }

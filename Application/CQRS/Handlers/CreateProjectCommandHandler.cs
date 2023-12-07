@@ -5,7 +5,7 @@ using Domain.Repositories;
 
 namespace Application.CQRS.Handlers
 {
-    public class CreateProjectCommandHandler : BaseHandler
+    public class CreateProjectCommandHandler : ICommandHandler<CreateProjectCommand>
     {
         private readonly IDataRepository<Project> _repository;
         private readonly IMapper _mapper;
@@ -17,13 +17,11 @@ namespace Application.CQRS.Handlers
             _mapper = mapper;
         }
 
-        public int Handle(CreateProjectCommand command)
+        public void Handle(CreateProjectCommand command)
         {
             var project = _mapper.Map<Project>(command);
 
             _repository.Add(project);
-
-            return project.Id;
         }
     }
 }

@@ -20,6 +20,7 @@ builder.Services.AddScoped(typeof(IDataRepository<>), typeof(EfGenericRepository
 builder.Services.AddScoped<GetAllProjectsQueryHandler>();
 builder.Services.AddScoped<CreateProjectCommandHandler>();
 builder.Services.AddScoped<CreateTaskCommandHandler>();
+builder.Services.AddScoped<GenericHandler>();
 
 var app = builder.Build();
 

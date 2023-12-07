@@ -6,7 +6,7 @@ using Domain.Repositories;
 
 namespace Application.CQRS.Handlers
 {
-    public class GetAllProjectsQueryHandler
+    public class GetAllProjectsQueryHandler : IQueryHandler<GetAllProjectsQuery, IEnumerable<ProjectDto>>
     {
         private readonly IDataRepository<Project> _repository;
         private readonly IMapper _mapper;

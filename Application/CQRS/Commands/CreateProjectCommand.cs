@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.CQRS.Commands
 {
-    public class CreateProjectCommand
+    public class CreateProjectCommand : ICommand
     {
         [Required]
         [MaxLength(50)]
