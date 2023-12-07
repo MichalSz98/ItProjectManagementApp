@@ -1,5 +1,6 @@
 using ItProjectManagementApp;
 using ItProjectManagementApp.Entities;
+using ItProjectManagementApp.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ProjectDbContext>();
 builder.Services.AddScoped<ProjectSeeder>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 var app = builder.Build();
 

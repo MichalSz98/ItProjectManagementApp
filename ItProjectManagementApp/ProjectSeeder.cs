@@ -48,7 +48,6 @@ namespace ItProjectManagementApp
                             Priority = TaskPriority.Medium,
                             Status = TaskStatus.Completed,
                             Type = TaskType.TechnicalIssue,
-                            IsUserStory = false,
                             StartDate = new DateTime(2024, 2, 1),
                             EndDate = new DateTime(2025, 3, 2),
                         },
@@ -60,7 +59,6 @@ namespace ItProjectManagementApp
                             Priority = TaskPriority.High,
                             Status = TaskStatus.InProgress,
                             Type = TaskType.UserStory,
-                            IsUserStory = true,
                             StartDate = null,
                             EndDate = null,
                             SubTasks = new List<Task>()
@@ -73,7 +71,6 @@ namespace ItProjectManagementApp
                                     Priority = TaskPriority.Medium,
                                     Status = TaskStatus.Completed,
                                     Type = TaskType.TechnicalIssue,
-                                    IsUserStory = false,
                                     StartDate = null,
                                     EndDate = null
                                 },
@@ -85,7 +82,6 @@ namespace ItProjectManagementApp
                                     Priority = TaskPriority.Medium,
                                     Status = TaskStatus.Completed,
                                     Type = TaskType.TechnicalIssue,
-                                    IsUserStory = false,
                                     StartDate = null,
                                     EndDate = null
                                 },

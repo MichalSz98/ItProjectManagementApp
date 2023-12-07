@@ -13,9 +13,9 @@ namespace ItProjectManagementApp.Entities
         public TaskPriority Priority { get; set; }
         public TaskStatus Status { get; set; }
         public TaskType Type { get; set; }
-        public bool IsUserStory { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public bool IsUserStory => Type == TaskType.UserStory;
 
         public int ProjectId { get; set; }
         public virtual Project Project { get; set; }

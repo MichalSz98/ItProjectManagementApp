@@ -59,9 +59,6 @@ namespace ItProjectManagementApp.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsUserStory")
-                        .HasColumnType("bit");
-
                     b.Property<int>("Priority")
                         .HasColumnType("int");
 

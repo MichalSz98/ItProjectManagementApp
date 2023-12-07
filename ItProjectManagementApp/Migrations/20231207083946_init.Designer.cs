@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ItProjectManagementApp.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20231207080623_init")]
+    [Migration("20231207083946_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -61,9 +61,6 @@ namespace ItProjectManagementApp.Migrations
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsUserStory")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");
