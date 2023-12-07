@@ -24,6 +24,14 @@ namespace ItProjectManagementApp.Controllers
             return Created($"/api/project/{id}", null);
         }
 
+        [HttpPut("{id}")]
+        public ActionResult Update([FromBody] UpdateProjectDto dto, [FromRoute] int id)
+        {
+            _projectService.Update(id, dto);
+
+            return Ok();
+        }
+
         [HttpGet]
         public ActionResult<IEnumerable<Project>> GetAll()
         {

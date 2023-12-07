@@ -9,6 +9,7 @@ namespace ItProjectManagementApp.Service
     public interface IProjectService
     {
         int Create(CreateProjectDto dto);
+        void Update(int id, UpdateProjectDto dto);
         IEnumerable<ProjectDto> GetAll();
         ProjectDto GetById(int id);
     }
@@ -26,16 +27,30 @@ namespace ItProjectManagementApp.Service
             _logger = logger;
         }
 
-    public int Create(CreateProjectDto dto)
-    {
-        var project = _mapper.Map<Project>(dto);
-        _dbContext.Projects.Add(project);
-        _dbContext.SaveChanges();
+        public int Create(CreateProjectDto dto)
+        {
+            var project = _mapper.Map<Project>(dto);
+            _dbContext.Projects.Add(project);
+            _dbContext.SaveChanges();
 
-        return project.Id;
-    }
+            return project.Id;
+        }
 
-    public IEnumerable<ProjectDto> GetAll()
+        public void Update(int id, UpdateProjectDto dto)
+        {
+            var restaurant = _dbContext
+                .Projects
+                .FirstOrDefault(r => r.Id == id);
+
+            if (restaurant is null)
+                throw new NotFoundException("Project not found");
+
+            restaurant.Description = dto.Description;
+
+            _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<ProjectDto> GetAll()
         {
             var projects = _dbContext
                 .Projects
