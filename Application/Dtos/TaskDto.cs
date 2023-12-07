@@ -1,7 +1,7 @@
-﻿using TaskStatus = ItProjectManagementApp.Enums.TaskStatus;
-using ItProjectManagementApp.Enums;
+﻿using Domain.Enums;
+using TaskStatus = Domain.Enums.TaskStatus;
 
-namespace ItProjectManagementApp.Models
+namespace Application.Dtos
 {
     public class TaskDto
     {
@@ -13,6 +13,6 @@ namespace ItProjectManagementApp.Models
         public TaskType Type { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public bool IsUserStory => Type == TaskType.UserStory;
+        public bool IsUserStory { get; set; }
     }
 }

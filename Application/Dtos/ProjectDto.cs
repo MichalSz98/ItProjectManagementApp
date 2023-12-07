@@ -1,4 +1,10 @@
-﻿namespace ItProjectManagementApp.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Application.Dtos
 {
     public class ProjectDto
     {
@@ -8,6 +14,6 @@
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
-        public virtual List<TaskDto> Tasks { get; set; }
+        public List<TaskDto> Tasks { get; set; }
     }
 }

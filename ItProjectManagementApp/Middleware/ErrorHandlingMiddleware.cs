@@ -1,4 +1,4 @@
-﻿using ItProjectManagementApp.Exceptions;
+﻿using Domain.Exceptions;
 
 namespace ItProjectManagementApp.Middleware
 {

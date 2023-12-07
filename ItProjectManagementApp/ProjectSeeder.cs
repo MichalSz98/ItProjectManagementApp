@@ -1,15 +1,16 @@
-﻿using ItProjectManagementApp.Entities;
-using ItProjectManagementApp.Enums;
-using Task = ItProjectManagementApp.Entities.Task;
-using TaskStatus = ItProjectManagementApp.Enums.TaskStatus;
+﻿using Domain.Entities;
+using Domain.Enums;
+using Infrastructure.Data;
+using Task = Domain.Entities.Task;
+using TaskStatus = Domain.Enums.TaskStatus;
 
 namespace ItProjectManagementApp
 {
     public class ProjectSeeder
     {
-        private readonly ProjectDbContext _dbContext;
+        private readonly ApplicationContext _dbContext;
 
-        public ProjectSeeder(ProjectDbContext dbContext)
+        public ProjectSeeder(ApplicationContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -31,36 +32,32 @@ namespace ItProjectManagementApp
         {
             var projects = new List<Project>()
             {
-                new Project()
+                new Project(
+                    "Projekt aplikacja webowa do karaoke",
+                    "Aplikacja webowa do karaoke",
+                    null,
+                    null
+                    )
                 {
                     //Id = 0,
-                    Name = "Projekt aplikacja webowa do karaoke",
-                    Description = "Aplikacja webowa do karaoke",
-                    StartDate = null,
-                    EndDate = null,
                     Tasks = new List<Task>()
                     {
-                        new Task()
-                        {
-                            //Id = 0,
-                            Title = "Postawienie szkieletu",
-                            Description = "Celem zadania jest postawienie szkieletu",
-                            Priority = TaskPriority.Medium,
-                            Status = TaskStatus.Completed,
-                            Type = TaskType.TechnicalIssue,
-                            StartDate = new DateTime(2024, 2, 1),
-                            EndDate = new DateTime(2025, 3, 2),
-                        },
-                        new Task()
+                        new Task("Postawienie szkieletu",
+                            "Celem zadania jest postawienie szkieletu",
+                            TaskPriority.Medium,
+                            TaskStatus.Completed,
+                            TaskType.TechnicalIssue,
+                            new DateTime(2024, 2, 1),
+                            new DateTime(2025, 3, 2)),
+                        new Task("Moduł przetwarzania dźwieku",
+                            "Celem zadania utworzenie modułu przetwarzania dźwięku",
+                            TaskPriority.High,
+                            TaskStatus.InProgress,
+                            TaskType.UserStory,
+                            null,
+                            null)
                         {
                             //Id = 1,
-                            Title = "Moduł przetwarzania dźwieku",
-                            Description = "Celem zadania utworzenie modułu przetwarzania dźwięku",
-                            Priority = TaskPriority.High,
-                            Status = TaskStatus.InProgress,
-                            Type = TaskType.UserStory,
-                            StartDate = null,
-                            EndDate = null,
                             //SubTasks = new List<Task>()
                             //{
                             //    new Task()
@@ -86,7 +83,7 @@ namespace ItProjectManagementApp
                             //        EndDate = null
                             //    },
                             //}
-                        },
+                        }
                     }
                 }
             };

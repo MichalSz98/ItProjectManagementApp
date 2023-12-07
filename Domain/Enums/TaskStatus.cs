@@ -1,4 +1,4 @@
-﻿namespace ItProjectManagementApp.Enums
+﻿namespace Domain.Enums
 {
     public enum TaskStatus
     {

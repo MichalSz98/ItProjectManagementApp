@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Task = Domain.Entities.Task;
 
-namespace ItProjectManagementApp.Entities
+namespace Infrastructure.Data
 {
-    public class ProjectDbContext : DbContext
+    public class ApplicationContext : DbContext
     {
         protected string _connectionString =
             "Server=localhost\\SQLEXPRESS;Database=ProjectDb;Trusted_Connection=True;TrustServerCertificate=True";
@@ -31,7 +33,7 @@ namespace ItProjectManagementApp.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(_connectionString, b => b.MigrationsAssembly("ItProjectManagementApp"));
         }
     }
 }

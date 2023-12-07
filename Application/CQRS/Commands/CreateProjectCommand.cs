@@ -1,8 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ItProjectManagementApp.Models
+namespace Application.CQRS.Commands
 {
-    public class CreateProjectDto
+    public class CreateProjectCommand
     {
         [Required]
         [MaxLength(50)]

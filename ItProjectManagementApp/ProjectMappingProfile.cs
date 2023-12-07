@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using ItProjectManagementApp.Entities;
-using ItProjectManagementApp.Models;
-using Task = ItProjectManagementApp.Entities.Task;
+﻿using Application.Dtos;
+using AutoMapper;
+using Domain.Entities;
+using Task = Domain.Entities.Task;
 
 namespace ItProjectManagementApp
 {
@@ -13,7 +13,9 @@ namespace ItProjectManagementApp
 
             CreateMap<Task, TaskDto>();
 
-            CreateMap<CreateProjectDto, Project>();
+            //CreateMap<CreateProjectDto, Project>();
+
+            //CreateMap<CreateProjectCommand, Project>();
         }
     }
 }

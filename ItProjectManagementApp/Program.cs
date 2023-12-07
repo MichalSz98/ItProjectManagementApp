@@ -1,7 +1,8 @@
+using Application.CQRS.Handlers;
+using Domain.Repositories;
+using Infrastructure.Data;
 using ItProjectManagementApp;
-using ItProjectManagementApp.Entities;
 using ItProjectManagementApp.Middleware;
-using ItProjectManagementApp.Service;
 using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,12 +11,14 @@ builder.Host.UseNLog();
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<ProjectDbContext>();
+builder.Services.AddDbContext<ApplicationContext>();
 builder.Services.AddScoped<ProjectSeeder>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
-builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IProjectRepository, EfProjectRepository>();
+builder.Services.AddScoped<GetAllProjectsQueryHandler>();
+builder.Services.AddScoped<CreateProjectCommandHandler>();
 
 var app = builder.Build();
 
