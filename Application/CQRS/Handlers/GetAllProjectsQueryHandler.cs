@@ -20,7 +20,7 @@ namespace Application.CQRS.Handlers
 
         public IEnumerable<ProjectDto> Handle(GetAllProjectsQuery query)
         {
-            var projects = _repository.GetAll();
+            var projects = _repository.GetAll(project => project.Tasks);
 
             var projectsDtos = _mapper.Map<List<ProjectDto>>(projects);
 

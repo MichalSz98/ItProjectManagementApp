@@ -1,5 +1,6 @@
 ﻿using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Data
 {
@@ -25,6 +26,18 @@ namespace Infrastructure.Data
         public IEnumerable<T> GetAll()
         {
             return _dbSet.ToList();
+        }
+
+        public IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.ToList();
         }
 
         public T GetById(int id)

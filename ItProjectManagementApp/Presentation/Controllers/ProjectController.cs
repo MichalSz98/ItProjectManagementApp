@@ -33,7 +33,7 @@ namespace ItProjectManagementApp.Presentation.Controllers
         {
             _genericHandler.Handle<CreateProjectCommandHandler>(cmd);
 
-            return Created();
+            return Created("/api/task", null);
         }
     }
 }
