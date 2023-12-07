@@ -15,10 +15,10 @@ namespace Domain.Entities
         public bool IsUserStory => Type == TaskType.UserStory;
 
         public int ProjectId { get; private set; }
-        public virtual Project Project { get; set; }
+        public virtual Project Project { get; private set; }
 
         public int? UserStoryId { get; private set; }
-        public virtual Task UserStory { get; set; }
+        public virtual Task UserStory { get; private set; }
         public List<Task> SubTasks { get; private set; }
 
         public Task(string title, string description, TaskPriority priority, TaskStatus status, TaskType type, DateTime? startDate, DateTime? endDate)
