@@ -1,4 +1,5 @@
 using ItProjectManagementApp.Entities;
+using ItProjectManagementApp.Models;
 using ItProjectManagementApp.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,14 @@ namespace ItProjectManagementApp.Controllers
             var projects = _projectService.GetAll();
 
             return Ok(projects);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<ProjectDto> Get([FromRoute] int id)
+        {
+            var project = _projectService.GetById(id);
+
+            return Ok(project);
         }
     }
 }
