@@ -7,10 +7,10 @@ namespace Application.CQRS.Handlers
 {
     public class CreateProjectCommandHandler : BaseHandler
     {
-        private readonly IProjectRepository _repository;
+        private readonly IDataRepository<Project> _repository;
         private readonly IMapper _mapper;
 
-        public CreateProjectCommandHandler(IProjectRepository repository,
+        public CreateProjectCommandHandler(IDataRepository<Project> repository,
             IMapper mapper)
         {
             _repository = repository;

@@ -1,16 +1,17 @@
 ﻿using Application.CQRS.Queries;
 using Application.Dtos;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Repositories;
 
 namespace Application.CQRS.Handlers
 {
     public class GetAllProjectsQueryHandler
     {
-        private readonly IProjectRepository _repository;
+        private readonly IDataRepository<Project> _repository;
         private readonly IMapper _mapper;
 
-        public GetAllProjectsQueryHandler(IProjectRepository repository,
+        public GetAllProjectsQueryHandler(IDataRepository<Project> repository,
             IMapper mapper)
         {
             _repository = repository;
