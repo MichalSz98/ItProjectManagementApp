@@ -1,4 +1,5 @@
-﻿using Application.Dtos;
+﻿using Application.CQRS.Commands;
+using Application.Dtos;
 using AutoMapper;
 using Domain.Entities;
 using Task = Domain.Entities.Task;
@@ -13,9 +14,7 @@ namespace ItProjectManagementApp
 
             CreateMap<Task, TaskDto>();
 
-            //CreateMap<CreateProjectDto, Project>();
-
-            //CreateMap<CreateProjectCommand, Project>();
+            CreateMap<CreateProjectCommand, Project>();
         }
     }
 }
