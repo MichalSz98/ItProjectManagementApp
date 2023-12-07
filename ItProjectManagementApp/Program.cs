@@ -17,8 +17,10 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProjectRepository, EfProjectRepository>();
+builder.Services.AddScoped<ITaskRepository, EfProjectRepository2>();
 builder.Services.AddScoped<GetAllProjectsQueryHandler>();
 builder.Services.AddScoped<CreateProjectCommandHandler>();
+builder.Services.AddScoped<CreateTaskCommandHandler>();
 
 var app = builder.Build();
 
