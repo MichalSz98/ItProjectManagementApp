@@ -36,9 +36,12 @@ namespace Application.Hexagonal.Services
             if (!user.HasRole())
                 throw new ApplicationException("User does not have any role.");
 
-            var task = _taskRepository.GetById(taskId);
+            var task = _taskRepository.GetById(taskId, p => p.Project);
             if (task == null)
                 throw new NotFoundException("Task not found.");
+
+            if (task.Project.TeamId != user.TeamId)
+                throw new ApplicationException("Inappropriate user team");
 
             task.SetUserId(user.Id);
             _taskRepository.Update(task);

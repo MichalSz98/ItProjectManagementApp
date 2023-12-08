@@ -8,6 +8,7 @@ namespace Domain.Repositories
         IEnumerable<T> GetAll();
         IEnumerable<T> GetAll(params Expression<Func<T, object>>[] includeProperties);
         T GetById(int id);
+        T GetById(int id, params Expression<Func<T, object>>[] includeProperties);
         void Remove(T entity);
         void Update(T entity);
     }

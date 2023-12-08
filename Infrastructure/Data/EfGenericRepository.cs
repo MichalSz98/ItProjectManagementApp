@@ -45,6 +45,18 @@ namespace Infrastructure.Data
             return _dbSet.Find(id);
         }
 
+        public T GetById(int id, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> query = _dbSet;
+
+            foreach (var includeProperty in includeProperties)
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.FirstOrDefault(entity => EF.Property<int>(entity, "Id") == id);
+        }
+
         public void Remove(T entity)
         {
             _dbSet.Remove(entity);
