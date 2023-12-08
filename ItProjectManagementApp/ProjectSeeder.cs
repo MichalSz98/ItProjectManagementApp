@@ -19,6 +19,14 @@ namespace ItProjectManagementApp
         {
             if (_dbContext.Database.CanConnect())
             {
+                if (!_dbContext.Teams.Any())
+                {
+                    var teams = GetTeams();
+
+                    _dbContext.Teams.AddRange(teams);
+                    _dbContext.SaveChanges();
+                }
+
                 if (!_dbContext.Projects.Any())
                 {
                     var projects = GetProjects();
@@ -28,6 +36,46 @@ namespace ItProjectManagementApp
                 }
             }
         }
+
+        private IEnumerable<Team> GetTeams()
+        {
+            return new List<Team>()
+            {
+                new Team()
+                {
+                    Name = "Team dźwiekowy",
+                    Users = new List<User>()
+                    {
+                        new User()
+                        {
+                            Name = "Jan",
+                            Surname = "Nowak",
+                            Role = UserRole.Programmer
+                        },
+                        new User()
+                        {
+                            Name = "Antoni",
+                            Surname = "Błaszczyk",
+                            Role = UserRole.Analyst
+                        }
+                    }
+                },
+                new Team()
+                {
+                    Name = "Team obrazu",
+                    Users = new List<User>()
+                    {
+                        new User()
+                        {
+                            Name = "Jan",
+                            Surname = "Kaszub",
+                            Role = UserRole.ScrumMaster
+                        }
+                    }
+                }
+            };
+        }
+
         private IEnumerable<Project> GetProjects()
         {
             var projects = new List<Project>()
@@ -39,6 +87,7 @@ namespace ItProjectManagementApp
                     null
                     )
                 {
+                    TeamId = 1,
                     //Id = 0,
                     Tasks = new List<Task>()
                     {
