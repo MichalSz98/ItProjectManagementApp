@@ -12,8 +12,13 @@ namespace Infrastructure.Services
         string smtpUser = "system@test1234.hmcloud.pl";
         string smtpPassword = "c4Ev5nIZKXdtJK6CTKe";
 
-        public void SendAssignmentNotification(string email, string taskTitle)
+        public void SendAssignmentNotification(string email, string number, string taskTitle)
         {
+            if (string.IsNullOrEmpty(email))
+                throw new ArgumentException("Argument cannot be empty", nameof(email));
+            if (string.IsNullOrEmpty(taskTitle))
+                throw new ArgumentException("Argument cannot be empty", nameof(taskTitle));
+
             MailMessage mail = new MailMessage();
             SmtpClient smtp = new SmtpClient(smtpHost);
 

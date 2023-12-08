@@ -51,14 +51,16 @@ namespace ItProjectManagementApp
                             Name = "Jan",
                             Surname = "Nowak",
                             Role = UserRole.Programmer,
-                            Email = "janNowak@gmail.com"
+                            Email = "janNowak@gmail.com",
+                            Phone = "665 665 665"
                         },
                         new User()
                         {
                             Name = "Antoni",
                             Surname = "Błaszczyk",
                             Role = UserRole.Analyst,
-                            Email = "antonib@gmail.com"
+                            Email = "antonib@gmail.com",
+                            Phone = "665 665 665"
                         }
                     }
                 },
@@ -72,7 +74,8 @@ namespace ItProjectManagementApp
                             Name = "Jan",
                             Surname = "Kaszub",
                             Role = UserRole.ScrumMaster,
-                            Email = "m.szmeja98@gmail.com"
+                            Email = "m.szmeja98@gmail.com",
+                            Phone = "665 665 665"
                         }
                     }
                 }
@@ -90,7 +93,7 @@ namespace ItProjectManagementApp
                     null
                     )
                 {
-                    TeamId = 1,
+                    TeamId = 7,
                     //Id = 0,
                     Tasks = new List<Task>()
                     {

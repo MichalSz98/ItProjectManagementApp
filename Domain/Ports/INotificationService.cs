@@ -10,6 +10,6 @@ namespace Domain.Ports
     // Port architektury heksagonalnej
     public interface INotificationService
     {
-        void SendAssignmentNotification(string email, string taskTitle);
+        void SendAssignmentNotification(string email, string number, string taskTitle);
     }
 }

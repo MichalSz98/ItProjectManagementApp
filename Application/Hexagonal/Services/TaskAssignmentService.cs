@@ -43,7 +43,7 @@ namespace Application.Hexagonal.Services
             task.SetUserId(user.Id);
             _taskRepository.Update(task);
 
-            _notificationService.SendAssignmentNotification(user.Email, task.Title);
+            _notificationService.SendAssignmentNotification(user.Email, null, task.Title);
         }
     }
 }
