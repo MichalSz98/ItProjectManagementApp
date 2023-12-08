@@ -1,5 +1,6 @@
 using Application.CQRS.Handlers;
 using Application.Hexagonal.Services;
+using Application.Onion.Services;
 using Domain.Ports;
 using Domain.Repositories;
 using Infrastructure.Data;
@@ -26,6 +27,7 @@ builder.Services.AddScoped<CreateTaskCommandHandler>();
 builder.Services.AddScoped<GenericHandler>();
 builder.Services.AddScoped<INotificationService, EmailNotificationService>();
 builder.Services.AddScoped<TaskAssignmentService>();
+builder.Services.AddScoped<TaskDependencyService>();
 
 var app = builder.Build();
 

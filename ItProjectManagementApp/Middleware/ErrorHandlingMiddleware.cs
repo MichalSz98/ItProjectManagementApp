@@ -17,6 +17,13 @@ namespace ItProjectManagementApp.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (ArgumentException argumentException)
+            {
+                _logger.LogError(argumentException, argumentException.Message);
+
+                context.Response.StatusCode = 400;
+                await context.Response.WriteAsync(argumentException.Message);
+            }
             catch (ApplicationException applicationException)
             {
                 _logger.LogError(applicationException, applicationException.Message);

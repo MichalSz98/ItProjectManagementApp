@@ -11,6 +11,7 @@ namespace Infrastructure.Data
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskDependency> TaskDependencies { get; set; }
 
         public DbSet<Team> Teams { get; set; }
         public DbSet<User> Users { get; set; }
@@ -37,6 +38,21 @@ namespace Infrastructure.Data
                 .HasOne(t => t.User)
                 .WithMany(u => u.Tasks)
                 .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<TaskDependency>()
+               .HasKey(td => new { td.TaskId, td.DependentOnId });
+
+            modelBuilder.Entity<TaskDependency>()
+                .HasOne(td => td.Task)
+                .WithMany(t => t.Dependencies)
+                .HasForeignKey(td => td.TaskId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<TaskDependency>()
+                .HasOne(td => td.DependentOn)
+                .WithMany()
+                .HasForeignKey(td => td.DependentOnId)
                 .OnDelete(DeleteBehavior.NoAction);
         }
 

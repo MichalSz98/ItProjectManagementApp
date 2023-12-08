@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using Task = Domain.Entities.Task;
 using TaskStatus = Domain.Enums.TaskStatus;
 
@@ -14,7 +15,6 @@ namespace ItProjectManagementApp
         {
             _dbContext = dbContext;
         }
-
         public void Seed()
         {
             if (_dbContext.Database.CanConnect())
@@ -32,6 +32,17 @@ namespace ItProjectManagementApp
                     var projects = GetProjects();
 
                     _dbContext.Projects.AddRange(projects);
+                    _dbContext.SaveChanges();
+
+                    var taskToUpdate = SetTaskSubtasks(_dbContext.Tasks);
+                    _dbContext.Tasks.Update(taskToUpdate);
+                    _dbContext.SaveChanges();
+                }
+
+                if (!_dbContext.TaskDependencies.Any())
+                {
+                    var taskToUpdate = SetTaskDependencies(_dbContext.Tasks);
+                    _dbContext.Tasks.Update(taskToUpdate);
                     _dbContext.SaveChanges();
                 }
             }
@@ -93,8 +104,7 @@ namespace ItProjectManagementApp
                     null
                     )
                 {
-                    TeamId = 7,
-                    //Id = 0,
+                    TeamId = 1,
                     Tasks = new List<Task>()
                     {
                         new Task("Postawienie szkieletu",
@@ -110,40 +120,48 @@ namespace ItProjectManagementApp
                             TaskStatus.InProgress,
                             TaskType.UserStory,
                             null,
-                            null)
-                        {
-                            //Id = 1,
-                            //SubTasks = new List<Task>()
-                            //{
-                            //    new Task()
-                            //    {
-                            //        //Id = 2,
-                            //        Title = "Zad 1 modułu przetwarzania dźwieku",
-                            //        Description = "Zad 1 modułu",
-                            //        Priority = TaskPriority.Medium,
-                            //        Status = TaskStatus.Completed,
-                            //        Type = TaskType.TechnicalIssue,
-                            //        StartDate = null,
-                            //        EndDate = null
-                            //    },
-                            //    new Task()
-                            //    {
-                            //        //Id = 3,
-                            //        Title = "Zad 2 modułu przetwarzania dźwieku",
-                            //        Description = "Zad 2 modułu przetwarzania dźwieku",
-                            //        Priority = TaskPriority.Medium,
-                            //        Status = TaskStatus.Completed,
-                            //        Type = TaskType.TechnicalIssue,
-                            //        StartDate = null,
-                            //        EndDate = null
-                            //    },
-                            //}
-                        }
+                            null),
+                        new Task("Zad 1 modułu przetwarzania dźwieku",
+                                 "Zad 1 modułu",
+                                 TaskPriority.Medium,
+                                 TaskStatus.Completed,
+                                 TaskType.TechnicalIssue,
+                                 null,
+                                 null),
+                        new Task("Zad 2 modułu przetwarzania dźwieku",
+                                 "Zad 2 modułu",
+                                 TaskPriority.Medium,
+                                 TaskStatus.Completed,
+                                 TaskType.TechnicalIssue,
+                                 null,
+                                 null)
                     }
                 }
             };
 
             return projects;
+        }
+
+        private Task SetTaskSubtasks(DbSet<Task> tasks)
+        {
+            var userStoryTask = tasks.FirstOrDefault(x => x.Id == 2);
+            var subtask1 = tasks.FirstOrDefault(x => x.Id == 3);
+            var subtask2 = tasks.FirstOrDefault(x => x.Id == 4);
+
+            userStoryTask.AddSubtask(subtask1);
+            userStoryTask.AddSubtask(subtask2);
+
+            return userStoryTask;
+        }
+
+        private Task SetTaskDependencies(DbSet<Task> tasks)
+        {
+            var firstTask = tasks.FirstOrDefault(x => x.Id == 1);
+            var secondTask = tasks.FirstOrDefault(x => x.Id == 2);
+
+            secondTask.AddDependency(firstTask);
+
+            return secondTask;
         }
     }
 }

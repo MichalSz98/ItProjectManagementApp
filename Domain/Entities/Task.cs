@@ -24,6 +24,9 @@ namespace Domain.Entities
         public virtual Task UserStory { get; private set; }
         public List<Task> SubTasks { get; private set; }
 
+        public bool IsCompleted => Status == TaskStatus.Completed;
+        public virtual List<TaskDependency> Dependencies { get; private set; }
+
         public Task(string title, string description, TaskPriority priority, TaskStatus status, TaskType type, DateTime? startDate, DateTime? endDate)
         {
             Title = title;
@@ -33,6 +36,35 @@ namespace Domain.Entities
             Type = type;
             StartDate = startDate;
             EndDate = endDate;
+            SubTasks = new List<Task>();
+            Dependencies = new List<TaskDependency>();
+        }
+
+        public void AddSubtask(Task task)
+        {
+            if (task == null)
+                throw new ArgumentNullException(nameof(task));
+
+            if (!SubTasks.Any(d => d.Id == task.Id))
+            {
+                SubTasks.Add(task);
+            }
+        }
+
+        public void AddDependency(Task task)
+        {
+            if (task == null)
+                throw new ArgumentNullException(nameof(task));
+
+            if (!Dependencies.Any(d => d.DependentOnId == task.Id))
+            {
+                Dependencies.Add(new TaskDependency { DependentOn = task });
+            }
+        }
+
+        public bool CanStart()
+        {
+            return Dependencies.All(d => d.DependentOn.IsCompleted);
         }
 
         public void SetUserId(int userId)
