@@ -17,6 +17,9 @@ namespace Domain.Entities
         public int ProjectId { get; private set; }
         public virtual Project Project { get; private set; }
 
+        public int? UserId { get; set; }
+        public virtual User User { get; set; }
+
         public int? UserStoryId { get; private set; }
         public virtual Task UserStory { get; private set; }
         public List<Task> SubTasks { get; private set; }
@@ -30,6 +33,11 @@ namespace Domain.Entities
             Type = type;
             StartDate = startDate;
             EndDate = endDate;
+        }
+
+        public void SetUserId(int userId)
+        {
+            UserId = userId;
         }
     }
 }

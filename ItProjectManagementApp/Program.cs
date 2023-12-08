@@ -1,6 +1,9 @@
 using Application.CQRS.Handlers;
+using Application.Hexagonal.Services;
+using Domain.Ports;
 using Domain.Repositories;
 using Infrastructure.Data;
+using Infrastructure.Services;
 using ItProjectManagementApp;
 using ItProjectManagementApp.Middleware;
 using NLog.Web;
@@ -21,6 +24,8 @@ builder.Services.AddScoped<GetAllProjectsQueryHandler>();
 builder.Services.AddScoped<CreateProjectCommandHandler>();
 builder.Services.AddScoped<CreateTaskCommandHandler>();
 builder.Services.AddScoped<GenericHandler>();
+builder.Services.AddScoped<INotificationService, EmailNotificationService>();
+builder.Services.AddScoped<TaskAssignmentService>();
 
 var app = builder.Build();
 

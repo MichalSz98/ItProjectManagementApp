@@ -1,6 +1,7 @@
 ﻿using Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -12,10 +13,18 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Email { get; set; }
 
-        public UserRole Role { get; set; }
+        public UserRole? Role { get; set; }
+
+        public bool HasRole()
+        {
+            return Role.HasValue;
+        }
 
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
+
+        public virtual List<Task> Tasks { get; set; }
     }
 }

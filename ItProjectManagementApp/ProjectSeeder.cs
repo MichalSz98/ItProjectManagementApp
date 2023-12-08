@@ -50,13 +50,15 @@ namespace ItProjectManagementApp
                         {
                             Name = "Jan",
                             Surname = "Nowak",
-                            Role = UserRole.Programmer
+                            Role = UserRole.Programmer,
+                            Email = "janNowak@gmail.com"
                         },
                         new User()
                         {
                             Name = "Antoni",
                             Surname = "Błaszczyk",
-                            Role = UserRole.Analyst
+                            Role = UserRole.Analyst,
+                            Email = "antonib@gmail.com"
                         }
                     }
                 },
@@ -69,7 +71,8 @@ namespace ItProjectManagementApp
                         {
                             Name = "Jan",
                             Surname = "Kaszub",
-                            Role = UserRole.ScrumMaster
+                            Role = UserRole.ScrumMaster,
+                            Email = "m.szmeja98@gmail.com"
                         }
                     }
                 }

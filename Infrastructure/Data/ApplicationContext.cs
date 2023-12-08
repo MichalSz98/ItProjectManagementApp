@@ -32,6 +32,12 @@ namespace Infrastructure.Data
                 .WithOne(t => t.UserStory)
                 .HasForeignKey(t => t.UserStoryId)
                 .IsRequired(false);
+
+            modelBuilder.Entity<Task>()
+                .HasOne(t => t.User)
+                .WithMany(u => u.Tasks)
+                .HasForeignKey(t => t.UserId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

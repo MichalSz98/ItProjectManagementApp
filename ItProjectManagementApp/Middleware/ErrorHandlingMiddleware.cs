@@ -17,6 +17,13 @@ namespace ItProjectManagementApp.Middleware
             {
                 await next.Invoke(context);
             }
+            catch (ApplicationException applicationException)
+            {
+                _logger.LogError(applicationException, applicationException.Message);
+
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync(applicationException.Message);
+            }
             catch (NotFoundException notFoundException)
             {
                 _logger.LogError(notFoundException, notFoundException.Message);
