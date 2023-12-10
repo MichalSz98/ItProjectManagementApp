@@ -42,14 +42,14 @@ namespace ItProjectManagementApp.Presentation.Controllers
         }
 
         [HttpGet("{taskId}/get-task-comments")]
-        public ActionResult<TaskWithCommentsDto> GetTaskComments(int taskId)
+        public ActionResult<IEnumerable<CommentDto>> GetTaskComments(int taskId)
         {
             var query = new GetTaskCommentsQuery()
             {
                 TaskId = taskId
             };
 
-            var projects = _genericHandler.Handle<GetTaskCommentsQueryHandler, TaskWithCommentsDto>(query);
+            var projects = _genericHandler.Handle<GetTaskCommentsQueryHandler, IEnumerable<CommentDto>>(query);
 
             return Ok(projects);
         }

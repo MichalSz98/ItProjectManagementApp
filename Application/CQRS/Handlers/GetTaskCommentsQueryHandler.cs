@@ -9,7 +9,7 @@ using Task = Domain.Entities.Task;
 
 namespace Application.CQRS.Handlers
 {
-    public class GetTaskCommentsQueryHandler : IQueryHandler<GetTaskCommentsQuery, TaskWithCommentsDto>
+    public class GetTaskCommentsQueryHandler : IQueryHandler<GetTaskCommentsQuery, IEnumerable<CommentDto>>
     {
         private readonly IDataRepository<Task> _repository;
         private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace Application.CQRS.Handlers
             _mapper = mapper;
         }
 
-        public TaskWithCommentsDto Handle(GetTaskCommentsQuery query)
+        public IEnumerable<CommentDto> Handle(GetTaskCommentsQuery query)
         {
             var task = _repository.GetById(query.TaskId, p => p.Comments);
 
@@ -30,9 +30,9 @@ namespace Application.CQRS.Handlers
                 throw new NotFoundException("Task not found.");
             }
 
-            var taskWithCommentsDto = _mapper.Map<TaskWithCommentsDto>(task);
+            var commentsDto = _mapper.Map<List<CommentDto>>(task.Comments);
 
-            return taskWithCommentsDto;
+            return commentsDto;
         }
     }
 }
