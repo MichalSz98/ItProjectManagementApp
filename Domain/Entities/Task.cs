@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using System.Threading.Tasks;
 using TaskStatus = Domain.Enums.TaskStatus;
 
 namespace Domain.Entities
@@ -27,6 +28,8 @@ namespace Domain.Entities
         public bool IsCompleted => Status == TaskStatus.Completed;
         public virtual List<TaskDependency> Dependencies { get; private set; }
 
+        public virtual List<Comment> Comments { get; private set; }
+
         public Task(string title, string description, TaskPriority priority, TaskStatus status, TaskType type, DateTime? startDate, DateTime? endDate)
         {
             Title = title;
@@ -38,6 +41,15 @@ namespace Domain.Entities
             EndDate = endDate;
             SubTasks = new List<Task>();
             Dependencies = new List<TaskDependency>();
+            Comments = new List<Comment>();
+        }
+
+        public void AddComment(Comment comment)
+        {
+            if (comment == null)
+                throw new ArgumentNullException(nameof(comment));
+
+            Comments.Add(comment);
         }
 
         public void AddSubtask(Task task)

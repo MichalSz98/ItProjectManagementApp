@@ -1,4 +1,5 @@
 using Application.CQRS.Handlers;
+using Application.CQRS.Queries;
 using Application.Hexagonal.Services;
 using Application.Onion.Services;
 using Domain.Ports;
@@ -21,9 +22,15 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped(typeof(IDataRepository<>), typeof(EfGenericRepository<>));
+
 builder.Services.AddScoped<GetAllProjectsQueryHandler>();
 builder.Services.AddScoped<CreateProjectCommandHandler>();
+
 builder.Services.AddScoped<CreateTaskCommandHandler>();
+
+builder.Services.AddScoped<AddCommentCommandHandler>();
+builder.Services.AddScoped<GetTaskCommentsQueryHandler>();
+
 builder.Services.AddScoped<GenericHandler>();
 builder.Services.AddScoped<INotificationService, EmailNotificationService>();
 builder.Services.AddScoped<TaskAssignmentService>();

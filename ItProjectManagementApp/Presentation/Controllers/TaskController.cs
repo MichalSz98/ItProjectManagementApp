@@ -1,5 +1,7 @@
 using Application.CQRS.Commands;
 using Application.CQRS.Handlers;
+using Application.CQRS.Queries;
+using Application.Dtos;
 using Application.Hexagonal.Services;
 using Application.Onion.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +32,26 @@ namespace ItProjectManagementApp.Presentation.Controllers
             _genericHandler.Handle<CreateTaskCommandHandler>(cmd);
 
             return Created("/api/task", null);
+        }
+
+        [HttpPut("add-comment")]
+        public ActionResult AddComment([FromBody] AddCommentCommand cmd)
+        {
+            _genericHandler.Handle<AddCommentCommandHandler>(cmd);
+            return Ok();
+        }
+
+        [HttpGet("{taskId}/get-task-comments")]
+        public ActionResult<TaskWithCommentsDto> GetTaskComments(int taskId)
+        {
+            var query = new GetTaskCommentsQuery()
+            {
+                TaskId = taskId
+            };
+
+            var projects = _genericHandler.Handle<GetTaskCommentsQueryHandler, TaskWithCommentsDto>(query);
+
+            return Ok(projects);
         }
 
         // Metody z wykorzystaniem architektury heksagonalnej
