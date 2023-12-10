@@ -4,10 +4,10 @@ using Application.CQRS.Queries;
 using Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ItProjectManagementApp.Presentation.Controllers
+namespace ItProjectManagementApp.Presentation.Controllers.CQRS
 {
     [ApiController]
-    [Route("/api/project")]
+    [Route("/api/CQRS/project")]
     public class ProjectController : ControllerBase
     {
         private readonly GenericHandler _genericHandler;
@@ -17,7 +17,6 @@ namespace ItProjectManagementApp.Presentation.Controllers
             _genericHandler = genericHandler;
         }
 
-        // Metody z wykorzystaniem CQRS
         [HttpGet]
         public ActionResult<IEnumerable<ProjectDto>> GetAll()
         {
@@ -33,7 +32,7 @@ namespace ItProjectManagementApp.Presentation.Controllers
         {
             _genericHandler.Handle<CreateProjectCommandHandler>(cmd);
 
-            return Created("/api/task", null);
+            return Created("/api/CQRS/task", null);
         }
     }
 }

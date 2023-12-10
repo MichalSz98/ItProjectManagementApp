@@ -101,10 +101,10 @@ namespace ItProjectManagementApp
                     "Projekt aplikacja webowa do karaoke",
                     "Aplikacja webowa do karaoke",
                     null,
-                    null
+                    null,
+                    1
                     )
                 {
-                    TeamId = 1,
                     Tasks = new List<Task>()
                     {
                         new Task("Postawienie szkieletu",

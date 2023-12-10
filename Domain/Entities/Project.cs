@@ -19,12 +19,13 @@ namespace Domain.Entities
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 
-        public Project(string name, string description, DateTime? startDate, DateTime? endDate)
+        public Project(string name, string description, DateTime? startDate, DateTime? endDate, int teamId)
         {
             Name = name;
             Description = description;
             StartDate = startDate;
             EndDate = endDate;
+            TeamId = teamId;
         }
     }
 }
