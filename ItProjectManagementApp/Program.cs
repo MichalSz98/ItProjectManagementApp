@@ -1,5 +1,4 @@
 using Application.CQRS.Handlers;
-using Application.CQRS.Queries;
 using Application.Hexagonal.Services;
 using Application.Onion.Services;
 using Domain.Ports;
@@ -30,6 +29,9 @@ builder.Services.AddScoped<CreateTaskCommandHandler>();
 
 builder.Services.AddScoped<AddCommentCommandHandler>();
 builder.Services.AddScoped<GetTaskCommentsQueryHandler>();
+
+builder.Services.AddScoped<ITaskCommentService, TaskCommentService>();
+builder.Services.AddScoped<TaskService>();
 
 builder.Services.AddScoped<GenericHandler>();
 builder.Services.AddScoped<INotificationService, EmailNotificationService>();
