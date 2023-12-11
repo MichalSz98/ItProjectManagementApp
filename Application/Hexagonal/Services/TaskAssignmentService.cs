@@ -11,7 +11,12 @@ using Task = Domain.Entities.Task;
 
 namespace Application.Hexagonal.Services
 {
-    public class TaskAssignmentService
+    public interface ITaskAssignmentService
+    {
+        void AssignTaskToUser(int taskId, int userId);
+    }
+
+    public class TaskAssignmentService : ITaskAssignmentService
     {
         private readonly IDataRepository<User> _userRepository;
         private readonly IDataRepository<Task> _taskRepository;
