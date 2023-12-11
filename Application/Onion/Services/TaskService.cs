@@ -10,13 +10,10 @@ namespace Application.Onion.Services
     public class TaskService
     {
         private readonly IDataRepository<Task> _repository;
-        private readonly IMapper _mapper;
 
-        public TaskService(IDataRepository<Task> repository,
-            IMapper mapper)
+        public TaskService(IDataRepository<Task> repository)
         {
             _repository = repository;
-            _mapper = mapper;
         }
 
         public void AddComment(int taskId, string commentText)
@@ -35,18 +32,18 @@ namespace Application.Onion.Services
             _repository.Update(task);
         }
 
-        public IEnumerable<CommentDto> GetComments(int taskId)
-        {
-            var task = _repository.GetById(taskId, p => p.Comments);
+        //public IEnumerable<CommentDto> GetComments(int taskId)
+        //{
+        //    var task = _repository.GetById(taskId, p => p.Comments);
 
-            if (task == null)
-            {
-                throw new NotFoundException("Task not found.");
-            }
+        //    if (task == null)
+        //    {
+        //        throw new NotFoundException("Task not found.");
+        //    }
 
-            var commentsDto = _mapper.Map<List<CommentDto>>(task.Comments);
+        //    var commentsDto = _mapper.Map<List<CommentDto>>(task.Comments);
 
-            return commentsDto;
-        }
+        //    return commentsDto;
+        //}
     }
 }

@@ -30,6 +30,10 @@ namespace Domain.Entities
 
         public virtual List<Comment> Comments { get; private set; }
 
+        public Task() {
+            Comments = new List<Comment>();
+        }
+
         public Task(string title, string description, TaskPriority priority, TaskStatus status, TaskType type, DateTime? startDate, DateTime? endDate)
         {
             Title = title;
