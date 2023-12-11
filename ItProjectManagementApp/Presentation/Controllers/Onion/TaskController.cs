@@ -34,12 +34,12 @@ namespace ItProjectManagementApp.Presentation.Controllers.Onion
             return Ok();
         }
 
-        [HttpGet("{taskId}/get-task-comments")]
-        public ActionResult<IEnumerable<CommentDto>> GetTaskComments(int taskId)
-        {
-            var comments = _taskService.GetComments(taskId);
+        //[HttpGet("{taskId}/get-task-comments")]
+        //public ActionResult<IEnumerable<CommentDto>> GetTaskComments(int taskId)
+        //{
+        //    var comments = _taskService.GetComments(taskId);
 
-            return Ok(comments);
-        }
+        //    return Ok(comments);
+        //}
     }
 }

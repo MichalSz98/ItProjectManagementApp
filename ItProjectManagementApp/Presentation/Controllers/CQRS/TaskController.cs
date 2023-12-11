@@ -2,6 +2,7 @@ using Application.CQRS.Commands;
 using Application.CQRS.Handlers;
 using Application.CQRS.Queries;
 using Application.Dtos;
+using Application.Hexagonal.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItProjectManagementApp.Presentation.Controllers.CQRS
@@ -43,6 +44,20 @@ namespace ItProjectManagementApp.Presentation.Controllers.CQRS
             var comments = _genericHandler.Handle<GetTaskCommentsQueryHandler, IEnumerable<CommentDto>>(query);
 
             return Ok(comments);
+        }
+
+        [HttpPut("assign-to-user")]
+        public ActionResult AssignToUser([FromBody] AssignTaskCommand cmd)
+        {
+            _genericHandler.Handle<AssignTaskCommandHandler>(cmd);
+            return Ok();
+        }
+
+        [HttpPut("send-notification")]
+        public ActionResult SendNotification([FromBody] SendNotificationCommand cmd)
+        {
+            _genericHandler.Handle<SendNotificationCommandHandler>(cmd);
+            return Ok();
         }
     }
 }
