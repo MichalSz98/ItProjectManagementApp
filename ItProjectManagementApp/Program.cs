@@ -36,6 +36,8 @@ builder.Services.AddScoped<SendNotificationCommandHandler>();
 builder.Services.AddScoped<AddProjectChangeLogCommandHandler>();
 builder.Services.AddScoped<GetProjectChangeLogQueryHandler>();
 
+builder.Services.AddScoped<IProjectChangeLogTracker, ProjectChangeLogService>();
+
 builder.Services.AddScoped<ITaskCommentService, TaskCommentService>();
 builder.Services.AddScoped<TaskService>();
 

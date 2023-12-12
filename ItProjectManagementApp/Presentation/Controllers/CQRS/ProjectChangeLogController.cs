@@ -18,7 +18,7 @@ namespace ItProjectManagementApp.Presentation.Controllers.CQRS
         }
 
         [HttpPost]
-        public ActionResult AddProjectChange([FromBody] AddProjectChangeLogCommand cmd)
+        public ActionResult AddProjectChangeLog([FromBody] AddProjectChangeLogCommand cmd)
         {
             _genericHandler.Handle<AddProjectChangeLogCommandHandler>(cmd);
 
@@ -26,7 +26,7 @@ namespace ItProjectManagementApp.Presentation.Controllers.CQRS
         }
 
         [HttpGet("{projectId}")]
-        public ActionResult<IEnumerable<ProjectChangeLogDto>> GetTaskComments(int projectId)
+        public ActionResult<IEnumerable<ProjectChangeLogDto>> GetProjectChangeLog(int projectId)
         {
             var query = new GetProjectChangeLogQuery()
             {
