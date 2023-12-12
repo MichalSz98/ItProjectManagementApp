@@ -33,6 +33,9 @@ builder.Services.AddScoped<GetTaskCommentsQueryHandler>();
 builder.Services.AddScoped<AssignTaskCommandHandler>();
 builder.Services.AddScoped<SendNotificationCommandHandler>();
 
+builder.Services.AddScoped<AddProjectChangeLogCommandHandler>();
+builder.Services.AddScoped<GetProjectChangeLogQueryHandler>();
+
 builder.Services.AddScoped<ITaskCommentService, TaskCommentService>();
 builder.Services.AddScoped<TaskService>();
 

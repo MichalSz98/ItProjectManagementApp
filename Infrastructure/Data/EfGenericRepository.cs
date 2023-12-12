@@ -1,5 +1,7 @@
-﻿using Domain.Repositories;
+﻿using Domain.Entities;
+using Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Data
@@ -35,6 +37,18 @@ namespace Infrastructure.Data
             foreach (var includeProperty in includeProperties)
             {
                 query = query.Include(includeProperty);
+            }
+
+            return query.ToList();
+        }
+
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>> wherePredicate)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (wherePredicate != null)
+            {
+                query = query.Where(wherePredicate);
             }
 
             return query.ToList();

@@ -56,6 +56,11 @@ namespace Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(td => td.DependentOnId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<ProjectChangeLog>()
+                .HasOne(log => log.Project)
+                .WithMany()
+                .HasForeignKey(log => log.ProjectId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

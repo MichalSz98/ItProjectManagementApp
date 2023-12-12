@@ -19,6 +19,8 @@ namespace Domain.Entities
         public int TeamId { get; set; }
         public virtual Team Team { get; set; }
 
+        public virtual ProjectChangeLog ProjectChangeLog { get; set; }
+
         public Project(string name, string description, DateTime? startDate, DateTime? endDate, int teamId)
         {
             Name = name;
