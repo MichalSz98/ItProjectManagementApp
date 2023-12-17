@@ -16,12 +16,12 @@ namespace Domain.Entities
 
         public virtual List<Task> Tasks { get; set; }
 
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
         public virtual Team Team { get; set; }
 
         public virtual ProjectChangeLog ProjectChangeLog { get; set; }
 
-        public Project(string name, string description, DateTime? startDate, DateTime? endDate, int teamId)
+        public Project(string name, string description, DateTime? startDate, DateTime? endDate, int? teamId)
         {
             Name = name;
             Description = description;
