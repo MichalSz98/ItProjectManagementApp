@@ -18,10 +18,10 @@ namespace Application.Hexagonal.Services
         private readonly IDataRepository<Task> _repository;
         private readonly IMapper _mapper;
 
-        public TaskCommentService(IDataRepository<Task> repository)
+        public TaskCommentService(IDataRepository<Task> repository, IMapper mapper)
         {
             _repository = repository;
-            //_mapper = mapper;
+            _mapper = mapper;
         }
 
         public void AddComment(int taskId, string commentText)

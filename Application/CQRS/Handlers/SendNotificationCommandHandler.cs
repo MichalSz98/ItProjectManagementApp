@@ -8,15 +8,15 @@ namespace Application.CQRS.Handlers
 {
     public class SendNotificationCommandHandler : ICommandHandler<SendNotificationCommand>
     {
-        const string SMTP_HOST = "myHost";
-        const int SMTP_PORT = 587;
-        const string SMTP_USER = "system@domainName.pl";
-        const string SMTP_PASSWORD = "password";
+        //const string SMTP_HOST = "myHost";
+        //const int SMTP_PORT = 587;
+        //const string SMTP_USER = "system@domainName.pl";
+        //const string SMTP_PASSWORD = "password";
 
-        //string SMTP_HOST = "h2.hitme.pl";
-        //int SMTP_PORT = 587;
-        //string SMTP_USER = "system@test1234.hmcloud.pl";
-        //string SMTP_PASSWORD = "c4Ev5nIZKXdtJK6CTKe";
+        string SMTP_HOST = "h2.hitme.pl";
+        int SMTP_PORT = 587;
+        string SMTP_USER = "system@test1234.hmcloud.pl";
+        string SMTP_PASSWORD = "c4Ev5nIZKXdtJK6CTKe";
 
         private readonly IDataRepository<User> _userRepository;
 

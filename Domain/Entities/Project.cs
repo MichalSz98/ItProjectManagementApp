@@ -14,12 +14,12 @@ namespace Domain.Entities
         public DateTime? StartDate { get; private set; }
         public DateTime? EndDate { get; private set; }
 
-        public virtual List<Task> Tasks { get; set; }
+        public virtual List<Task> Tasks { get; set; } = new List<Task>();
 
         public int? TeamId { get; set; }
         public virtual Team Team { get; set; }
 
-        public virtual ProjectChangeLog ProjectChangeLog { get; set; }
+        public virtual ProjectChangeLog ProjectChangeLog { get; private set; }
 
         public Project(string name, string description, DateTime? startDate, DateTime? endDate, int? teamId)
         {

@@ -13,6 +13,7 @@ namespace Application.Dtos
         public string Description { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public int? TeamId { get; set; }
 
         public List<TaskDto> Tasks { get; set; }
     }

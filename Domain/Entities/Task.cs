@@ -23,15 +23,14 @@ namespace Domain.Entities
 
         public int? UserStoryId { get; private set; }
         public virtual Task UserStory { get; private set; }
-        public List<Task> SubTasks { get; private set; }
+        public List<Task> SubTasks { get; private set; } = new List<Task>();
 
         public bool IsCompleted => Status == TaskStatus.Completed;
-        public virtual List<TaskDependency> Dependencies { get; private set; }
+        public virtual List<TaskDependency> Dependencies { get; private set; } = new List<TaskDependency>();
 
-        public virtual List<Comment> Comments { get; private set; }
+        public virtual List<Comment> Comments { get; private set; } = new List<Comment>();
 
         public Task() {
-            Comments = new List<Comment>();
         }
 
         public Task(string title, string description, TaskPriority priority, TaskStatus status, TaskType type, DateTime? startDate, DateTime? endDate)
@@ -43,9 +42,6 @@ namespace Domain.Entities
             Type = type;
             StartDate = startDate;
             EndDate = endDate;
-            SubTasks = new List<Task>();
-            Dependencies = new List<TaskDependency>();
-            Comments = new List<Comment>();
         }
 
         public void AddComment(Comment comment)
