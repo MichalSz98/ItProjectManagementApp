@@ -5,7 +5,7 @@ using Domain.Repositories;
 
 namespace Domain.Ports
 {
-    // Port architektury heksagonalnej (powinien być w domenie)
+    // Port
     public interface IProjectChangeLogTracker
     {
         void AddProjectChangeLog(int projectId, string changeDescription);
